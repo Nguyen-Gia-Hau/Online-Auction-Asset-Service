@@ -14,5 +14,6 @@ import { AssetTypesModule } from '../asset-types/asset-types.module';
   ],
   controllers: [AssetsController],
   providers: [AssetsService],
+  exports: [AssetsService]
 })
 export class AssetsModule { }

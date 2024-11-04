@@ -4,6 +4,8 @@ import { MariadbConfigModule } from "src/config/database/mariadb/config.module";
 import { MariadbConfigService } from "src/config/database/mariadb/config.service";
 import { AssetStatus } from "src/models/asset-statuses/entities/asset-status.entity";
 import { AssetType } from "src/models/asset-types/entities/asset-type.entity";
+import { Asset } from "src/models/assets/entities/asset.entity";
+import { Inventory } from "src/models/inventories/entities/inventory.entity";
 import { Warehouse } from "src/models/warehouse/entities/warehouse.entity";
 
 @Module({
@@ -18,7 +20,7 @@ import { Warehouse } from "src/models/warehouse/entities/warehouse.entity";
         password: mariadbConfigService.password,
         database: mariadbConfigService.dbName,
         entities: [
-          AssetType, AssetStatus, Warehouse
+          AssetType, AssetStatus, Warehouse, Asset, Inventory
         ],
         synchronize: true
       }),
