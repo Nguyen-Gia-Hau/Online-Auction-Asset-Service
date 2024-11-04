@@ -8,5 +8,6 @@ import { AssetType } from './entities/asset-type.entity';
   imports: [TypeOrmModule.forFeature([AssetType])],
   controllers: [AssetTypesController],
   providers: [AssetTypesService],
+  exports: [AssetTypesService]
 })
 export class AssetTypesModule { }
