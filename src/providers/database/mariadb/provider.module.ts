@@ -1,7 +1,9 @@
-import { Module, OnModuleInit } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { TypeOrmModule, TypeOrmModuleAsyncOptions } from "@nestjs/typeorm";
 import { MariadbConfigModule } from "src/config/database/mariadb/config.module";
 import { MariadbConfigService } from "src/config/database/mariadb/config.service";
+import { AssetStatus } from "src/models/asset-statuses/entities/asset-status.entity";
+import { AssetType } from "src/models/asset-types/entities/asset-type.entity";
 
 @Module({
   imports: [
@@ -15,7 +17,7 @@ import { MariadbConfigService } from "src/config/database/mariadb/config.service
         password: mariadbConfigService.password,
         database: mariadbConfigService.dbName,
         entities: [
-          // ... All mysql based schemas/entities
+          AssetType, AssetStatus
         ],
         synchronize: true
       }),
