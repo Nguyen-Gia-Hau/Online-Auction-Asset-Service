@@ -1,5 +1,4 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { WarehouseService } from './warehouse.service';
 import { CreateWarehouseDto } from './dto/create-warehouse.dto';
 import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
@@ -8,29 +7,28 @@ import { UpdateWarehouseDto } from './dto/update-warehouse.dto';
 export class WarehouseController {
   constructor(private readonly warehouseService: WarehouseService) { }
 
-  @MessagePattern({ cmd: 'warehouse', action: 'create' })
-  create(@Payload() createWarehouseDto: CreateWarehouseDto) {
+  @Post()
+  create(@Body() createWarehouseDto: CreateWarehouseDto) {
     return this.warehouseService.create(createWarehouseDto);
   }
 
-
-  @MessagePattern({ cmd: 'warehouse', action: 'findAll' })
+  @Get()
   findAll() {
     return this.warehouseService.findAll();
   }
 
-  @MessagePattern({ cmd: 'warehouse', action: 'findOne' })
-  findOne(@Payload() id: number) {
+  @Get('/:id')
+  findOne(@Param() id: number) {
     return this.warehouseService.findOne(id);
   }
 
-  @MessagePattern({ cmd: 'warehouse', action: 'update' })
-  update(@Payload() updateWarehouseDto: UpdateWarehouseDto) {
-    return this.warehouseService.update(updateWarehouseDto.id, updateWarehouseDto);
+  @Put('/:id')
+  update(@Param() id: number, @Body() updateWarehouseDto: UpdateWarehouseDto) {
+    return this.warehouseService.update(id, updateWarehouseDto);
   }
 
-  @MessagePattern({ cmd: 'warehouse', action: 'remove' })
-  remove(@Payload() id: number) {
+  @Delete('/:id')
+  remove(@Param('id') id: number) {
     return this.warehouseService.remove(id);
   }
 }
