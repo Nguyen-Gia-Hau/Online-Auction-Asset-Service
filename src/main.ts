@@ -1,30 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppConfigService } from './config/app/config.service';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
-  const appConfig: AppConfigService = app.get(AppConfigService);
+  // get app config for cors serttings and starting the app.
+  const appConfig: AppConfigService = app.get(AppConfigService)
 
-  const microservice = await NestFactory.createMicroservice<MicroserviceOptions>(
-    AppModule,
-    {
-      transport: Transport.TCP,
-      options: {
-        host: appConfig.serviceHost,
-        port: appConfig.servicePort
-      }
-    }
-  );
-
-  await microservice.listen();
-
-  console.log(`Asset service is running on: `, {
+  await app.listen(appConfig.port, () => console.log(`Asset service is running on: `, {
     host: appConfig.serviceHost,
     port: appConfig.servicePort
-  });
+  }));
 }
 
 bootstrap();
