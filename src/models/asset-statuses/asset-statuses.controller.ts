@@ -1,5 +1,4 @@
-import { Controller } from '@nestjs/common';
-import { MessagePattern, Payload } from '@nestjs/microservices';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { AssetStatusesService } from './asset-statuses.service';
 import { CreateAssetStatusDto } from './dto/create-asset-status.dto';
 import { UpdateAssetStatusDto } from './dto/update-asset-status.dto';
@@ -8,28 +7,28 @@ import { UpdateAssetStatusDto } from './dto/update-asset-status.dto';
 export class AssetStatusesController {
   constructor(private readonly assetStatusesService: AssetStatusesService) { }
 
-  @MessagePattern({ cmd: 'asset-statuses', action: 'create' })
-  create(@Payload() createAssetStatusDto: CreateAssetStatusDto) {
+  @Post()
+  create(@Body() createAssetStatusDto: CreateAssetStatusDto) {
     return this.assetStatusesService.create(createAssetStatusDto);
   }
 
-  @MessagePattern({ cmd: 'asset-statuses', action: 'findAll' })
+  @Get()
   findAll() {
     return this.assetStatusesService.findAll();
   }
 
-  @MessagePattern({ cmd: 'asset-statuses', action: 'findOne' })
-  findOne(@Payload() id: number) {
+  @Get('/:id')
+  findOne(@Param('id') id: number) {
     return this.assetStatusesService.findOne(id);
   }
 
-  @MessagePattern({ cmd: 'asset-statuses', action: 'update' })
-  update(@Payload() updateAssetStatusDto: UpdateAssetStatusDto) {
-    return this.assetStatusesService.update(updateAssetStatusDto.id, updateAssetStatusDto);
+  @Put('/:id')
+  update(@Param('id') id: number, @Body() updateAssetStatusDto: UpdateAssetStatusDto) {
+    return this.assetStatusesService.update(id, updateAssetStatusDto);
   }
 
-  @MessagePattern({ cmd: 'asset-statuses', action: 'remove' })
-  remove(@Payload() id: number) {
+  @Delete('/:id')
+  remove(@Param('id') id: number) {
     return this.assetStatusesService.remove(id);
   }
 }
