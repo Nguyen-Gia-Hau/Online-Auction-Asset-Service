@@ -8,14 +8,14 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
 
   // config swagger 
-  // const config = new DocumentBuilder()
-  //   .setTitle('Cats example')
-  //   .setDescription('The cats API description')
-  //   .setVersion('1.0')
-  //   .addTag('cats')
-  //   .build();
-  // const documentFactory = () => SwaggerModule.createDocument(app, config);
-  // SwaggerModule.setup('api', app, documentFactory);
+  const config = new DocumentBuilder()
+    .setTitle('ASSET SERVICE')
+    .setDescription('The ASSET API description')
+    .setVersion('1.0')
+    .addTag('Asset')
+    .build();
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, documentFactory);
 
   // get app config for cors serttings and starting the app.
   const appConfig: AppConfigService = app.get(AppConfigService)
