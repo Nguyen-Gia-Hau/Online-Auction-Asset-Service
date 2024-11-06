@@ -17,17 +17,17 @@ export class AssetStatusesController {
     return this.assetStatusesService.findAll();
   }
 
-  @Get('/:id')
+  @Get(':id')
   findOne(@Param('id') id: number) {
     return this.assetStatusesService.findOne(id);
   }
 
-  @Put('/:id')
+  @Put(':id')
   update(@Param('id') id: number, @Body() updateAssetStatusDto: UpdateAssetStatusDto) {
     return this.assetStatusesService.update(id, updateAssetStatusDto);
   }
 
-  @Delete('/:id')
+  @Delete(':id')
   remove(@Param('id') id: number) {
     return this.assetStatusesService.remove(id);
   }

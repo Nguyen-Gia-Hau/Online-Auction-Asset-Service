@@ -32,7 +32,7 @@ export class AssetStatusesService {
       code: 200,
       message: 'Asset statuses retrieved successfully',
       metadata: {
-        data: result,
+        result,
         total,
         page,
         lastPage: Math.ceil(total / limit),
