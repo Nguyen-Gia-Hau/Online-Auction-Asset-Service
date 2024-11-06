@@ -18,12 +18,12 @@ export class WarehouseController {
   }
 
   @Get(':id')
-  findOne(@Param() id: number) {
+  findOne(@Param('id') id: number) {
     return this.warehouseService.findOne(id);
   }
 
   @Put(':id')
-  update(@Param() id: number, @Body() updateWarehouseDto: UpdateWarehouseDto) {
+  update(@Param('id') id: number, @Body() updateWarehouseDto: UpdateWarehouseDto) {
     return this.warehouseService.update(id, updateWarehouseDto);
   }
 

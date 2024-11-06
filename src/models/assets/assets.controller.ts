@@ -17,18 +17,18 @@ export class AssetsController {
     return this.assetsService.findAll();
   }
 
-  @Get('/:id')
-  findOne(@Param() id: number) {
+  @Get(':id')
+  findOne(@Param('id') id: number) {
     return this.assetsService.findOne(id);
   }
 
-  @Put('/:id')
+  @Put(':id')
   update(@Param('id') id: number, @Body() updateAssetDto: UpdateAssetDto) {
     return this.assetsService.update(id, updateAssetDto);
   }
 
-  @Delete('/:id')
-  remove(@Param() id: number) {
+  @Delete(':id')
+  remove(@Param('id') id: number) {
     return this.assetsService.remove(id);
   }
 }
