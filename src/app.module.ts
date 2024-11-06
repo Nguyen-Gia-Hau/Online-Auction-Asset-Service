@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AppConfigModule } from './config/app/config.module';
 import { MariadbDatabaseProviderModule } from './providers/database/mariadb/provider.module';
 import { AssetTypesModule } from './models/asset-types/asset-types.module';
@@ -19,8 +17,6 @@ import { AssetsModule } from './models/assets/assets.module';
     InventoriesModule,
     AssetsModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 
 export class AppModule { }
