@@ -17,17 +17,17 @@ export class WarehouseController {
     return this.warehouseService.findAll();
   }
 
-  @Get('/:id')
+  @Get(':id')
   findOne(@Param() id: number) {
     return this.warehouseService.findOne(id);
   }
 
-  @Put('/:id')
+  @Put(':id')
   update(@Param() id: number, @Body() updateWarehouseDto: UpdateWarehouseDto) {
     return this.warehouseService.update(id, updateWarehouseDto);
   }
 
-  @Delete('/:id')
+  @Delete(':id')
   remove(@Param('id') id: number) {
     return this.warehouseService.remove(id);
   }
