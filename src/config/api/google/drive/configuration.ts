@@ -1,8 +1,7 @@
 import { registerAs } from '@nestjs/config'
-import * as config from './google-api-service.json'
 export default registerAs('googleDrive', () => ({
-  clientId: config.clientId,
-  redirectUrl: config.redirectUrl,
-  clientSecret: config.clientSecret,
-  refreshToken: config.refreshToken
+  clientId: process.env.GOOGLE_CLIENT_ID,
+  redirectUrl: process.env.GOOGLE_REDIRECT_URL,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
 }));
