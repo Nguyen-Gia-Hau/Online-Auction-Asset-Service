@@ -6,11 +6,13 @@ import { AssetStatusesModule } from './models/asset-statuses/asset-statuses.modu
 import { WarehouseModule } from './models/warehouse/warehouse.module';
 import { InventoriesModule } from './models/inventories/inventories.module';
 import { AssetsModule } from './models/assets/assets.module';
+import { GoogleDriveConfigModule } from './config/api/google/drive/config.module';
 
 @Module({
   imports: [
     AppConfigModule,
     MariadbDatabaseProviderModule,
+    GoogleDriveConfigModule,
     AssetTypesModule,
     AssetStatusesModule,
     WarehouseModule,

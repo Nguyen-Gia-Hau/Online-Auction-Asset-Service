@@ -29,6 +29,4 @@ import { Warehouse } from "src/models/warehouse/entities/warehouse.entity";
   ]
 })
 
-export class MariadbDatabaseProviderModule {
-
-}
+export class MariadbDatabaseProviderModule { }
